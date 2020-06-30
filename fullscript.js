@@ -1,5 +1,5 @@
 const express = require('express');
-//const Joi = require('joi'); //used for validation
+const Joi = require('joi'); //used for validation
 const app = express();
 app.use(express.json());
 
@@ -66,3 +66,12 @@ books.splice(index,1);
 res.send(book);
 });
 
+function validateBook(book) {
+const schema = {
+title: Joi.string().min(3).required()
+};
+return Joi.validate(book, schema);
+ 
+}
+
+app.listen(8080);
