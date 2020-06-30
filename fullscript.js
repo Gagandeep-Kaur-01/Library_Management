@@ -74,4 +74,7 @@ return Joi.validate(book, schema);
  
 }
 
-app.listen(8080);
+
+//PORT ENVIRONMENT VARIABLE
+const port = process.env.PORT || 8080;
+app.listen(port, () => console.log(`Listening on port ${port}..`));
