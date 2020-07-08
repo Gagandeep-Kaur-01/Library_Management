@@ -1,14 +1,19 @@
 
-const express = require('express');
-//const Joi = require('joi'); //used for validation
-const app = express();
-app.use(express.json());
 
-const books = [
-	{title: 'History of Punjab', id: 1},
-	{title: 'Final Asault', id: 2},
-	{title: 'Sher E Punjab', id: 3}
-]
+const express = require('express');
+const app = express();
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+const multer = require('multer');
+var upload = multer();
+
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(upload.array());
+
+var mod = require('./module/module');
+var route = express.Router();
+//app.use('/module', module);
 
 app.get('/', (req,res) => {
 	res.send("Welcome to my Library!!!!!!");
@@ -25,4 +30,4 @@ app.get('/api/books/:id', (req,res) => {
 });
 
 app.listen(8080);
-console.log('Open local host: 8080')
+console.log('Open local host: 8080');
